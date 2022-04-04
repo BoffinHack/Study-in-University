@@ -1,1 +1,1 @@
-C++ projects
+Some projects
