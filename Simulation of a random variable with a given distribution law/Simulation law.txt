@@ -1,0 +1,90 @@
+import math
+
+#Start number
+y = float(0.159845022)
+print("Start number ", y)
+
+#Big integer 
+g = int(3623459)
+print("Big integer ", g)
+
+#Tochnost 
+k = int(8)
+print("Tochnost ", k)
+
+#Кол-во чисел
+c = int(10862)
+print("Кол-во чисел ", c)
+
+print("")
+
+#Массив для хранения значений e
+list_e = []
+
+#Массив для хранения значений y
+list_y = []
+
+print("")
+
+#f = open('C:/random.txt','w+')
+#wstr = ""
+#s1 = " "
+#s2 = "\n"
+
+#Min
+#min = float(y)
+#Max
+#max = float(0.0)
+
+#Random process + вычисление E
+for i in range (c):
+    e = math.sqrt(y) - 1
+    list_e.append(e)
+    list_y.append(y)
+    y = int(((g * y) % 1) * pow(10, k)) / pow(10, k)
+    y = round(y, k)
+    #wstr = s1 + str(list_y[i]) + s2
+    #f.write(wstr)
+
+#f.close()
+
+#Interval
+r = int(1 + 3.3 * math.log10(c))
+print("r - ", "", r)
+
+print("")
+
+#Xi^2
+xi = float(0.0)
+shag = float(1 / r)
+count = int(0)
+pi = float(0.0)
+sump = float(0.0)
+teor = int(0)
+
+print("Распределение элемнтов выборки по интервалам:")
+i = -r
+j = 0
+while(i < 0):
+    while(j < c):
+        if((shag * i) <= list_e[j] <= (shag * (i + 1))):
+            count += 1
+        j += 1
+    j = 0
+
+    #вероятность попадания элементв в интервал
+    pi = (pow((shag * (i + 1)), 2) + 2 * (shag * (i + 1)) + 1) - (pow((shag * i), 2) + 2 * (shag * i) + 1)
+    
+    sump += pi
+    teor = int(c * pi)
+    print(teor)
+    
+    #значение X2
+    xi += pow((count - c * pi), 2) / (c * pi)
+
+    count = 0
+    i += 1
+
+print("")
+print("xi - ", "", xi)
+print("")
